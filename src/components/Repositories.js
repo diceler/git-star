@@ -1,14 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStar} from "@fortawesome/free-regular-svg-icons";
+import Repository from "./Repository";
 
-export default function Repositories({repos}) {
+export default function Repositories({repos, onStar, onUnstar, starred}) {
   if (repos.length === 0) {
     return null;
+  }
+
+  function checkIfStarred(id) {
+    return starred.map((item) => item.id).indexOf(id) > -1;
   }
 
   return (
@@ -16,18 +20,13 @@ export default function Repositories({repos}) {
       <Row>
         <Col xs={{span: 12, offset: 0}} md={{span: 10, offset: 1}}>
           {repos.map((repo) => (
-            <Row className="mt-1">
-              <Col>
-                <a href={repo.html_url}>
-                  {repo.full_name}
-                </a>
-              </Col>
-              <Col bsPrefix="col-auto ml-auto">
-                <Button variant="outline-success">
-                  <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
-                </Button>
-              </Col>
-            </Row>
+            <Repository
+              key={repo.id}
+              isStarred={checkIfStarred(repo.id)}
+              onStar={onStar}
+              onUnstar={onUnstar}
+              repo={repo}
+            />
           ))}
         </Col>
       </Row>
@@ -41,3 +40,11 @@ export default function Repositories({repos}) {
     </Container>
   );
 }
+
+Repositories.propTypes = {
+  onStar: PropTypes.func.isRequired,
+  onUnstar: PropTypes.func.isRequired,
+  repos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  starred: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+

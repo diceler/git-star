@@ -29,7 +29,7 @@ function App({actions, initCompleted, repos, starred}) {
         <Container>
           <Row>
             <Col>
-              <div className="text-center mt-5 mb-5">
+              <div className="text-center mt-3 mb-3 mt-md-5 mb-md-5">
                 <h3>
                   Find top starred repos of
                   <br/>
@@ -40,13 +40,18 @@ function App({actions, initCompleted, repos, starred}) {
             </Col>
           </Row>
         </Container>
-        <Repositories repos={repos}/>
+        <Repositories
+          onStar={actions.starRepo}
+          onUnstar={actions.unstarRepo}
+          repos={repos}
+          starred={starred}
+        />
       </Route>
       <Route path="/starred" exact>
         <Container>
           <Row>
             <Col>
-              <div className="text-center mt-5 mb-5">
+              <div className="text-center mt-3 mb-3 mt-md-5 mb-md-5">
                 <h3>
                   Repos starred by you
                 </h3>
