@@ -1,19 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {useLocation} from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Repository from "./Repository";
 
-export default function Repositories({repos, onStar, onUnstar, starred}) {
-  if (repos.length === 0) {
-    return null;
-  }
+export default function Repositories({onStar, onUnstar, repos, starred}) {
+  const location = useLocation();
+  const starredIds = starred.map((item) => item.id);
 
   function checkIfStarred(id) {
-    return starred.map((item) => item.id).indexOf(id) > -1;
+    return starredIds.indexOf(id) > -1;
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <Container>

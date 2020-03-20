@@ -10,46 +10,62 @@ import {
   faHistory,
   faStar as fasStar
 } from "@fortawesome/free-solid-svg-icons";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 export default function Repository({isStarred, onStar, onUnstar, repo}) {
   return (
-    <div key={repo.id} className="repo">
-      <a href={repo.html_url}>
-        {repo.full_name}
-      </a>
-      <button className="repo__star" onClick={isStarred ? onUnstar : onStar} value={repo.id}>
-        <FontAwesomeIcon icon={isStarred ? fasStar : falStar} className="repo__icon"/>
-      </button>
+    <div key={repo.id} className="repo bg-light">
+      <Row noGutters className="align-content-center">
+        <Col>
+            <a className="repo__name" href={repo.html_url} target="_blank" rel="noopener noreferrer">
+              {repo.full_name}
+            </a>
+        </Col>
+        <Col bsPrefix="col-auto ml-auto">
+          <Button
+            variant={isStarred ? 'success' : 'secondary'}
+            size="sm"
+            className="repo__star"
+            onClick={isStarred ? onUnstar : onStar}
+            value={repo.id}
+          >
+            <FontAwesomeIcon icon={isStarred ? fasStar : falStar} className="repo__icon mr-1"/>
+            {isStarred ? 'Starred' : 'Star'}
+          </Button>
+        </Col>
+      </Row>
       <p>
         {repo.description}
       </p>
-      <ul className="repo__meta">
-        <li className="repo__info">
+      <Row noGutters>
+        <Col bsPrefix="col-auto" className="repo__info text-muted">
           <FontAwesomeIcon icon={fasStar} title="Starred" className="mr-1"/>
           {repo.stargazers_count}
-        </li>
-        <li className="repo__info">
+        </Col>
+        <Col bsPrefix="col-auto" className="repo__info text-muted">
           <FontAwesomeIcon icon={faCodeBranch} title="Forked" className="mr-1"/>
           {repo.forks_count}
-        </li>
-        <li className="repo__info">
-          <FontAwesomeIcon icon={faBug} title={`${repo.open_issues_count} issues needs help`}
+        </Col>
+        <Col bsPrefix="col-auto" className="repo__info text-muted">
+          <FontAwesomeIcon icon={faBug} title={`${repo.open_issues_count} issues need help`}
                            className="mr-1"/>
           {repo.open_issues_count}
-        </li>
+        </Col>
         {repo.language && (
-          <li className="repo__info">
+          <Col bsPrefix="col-auto" className="repo__info text-muted">
             <FontAwesomeIcon icon={faCode} title="Coding language" className="mr-1"/>
             {repo.language}
-          </li>
+          </Col>
         )}
         {repo.license && (
-          <li className="repo__info">
+          <Col bsPrefix="col-auto" className="repo__info text-muted">
             <FontAwesomeIcon icon={faFileSignature} title="License" className="mr-1"/>
             {repo.license.name}
-          </li>
+          </Col>
         )}
-        <li className="repo__info">
+        <Col bsPrefix="col-auto" className="repo__info text-muted">
           <FontAwesomeIcon icon={faHistory} title="Last update" className="mr-1"/>
           {new Date(repo.updated_at).toLocaleDateString(undefined, {
             weekday: 'long',
@@ -57,15 +73,15 @@ export default function Repository({isStarred, onStar, onUnstar, repo}) {
             month: 'short',
             day: '2-digit'
           })}
-        </li>
-      </ul>
+        </Col>
+      </Row>
     </div>
   );
 }
 
 Repository.propTypes = {
   isStarred: PropTypes.bool.isRequired,
-  onStar: PropTypes.func.isRequired,
+  onStar: PropTypes.func,
   onUnstar: PropTypes.func.isRequired,
   repo: PropTypes.shape({
     id: PropTypes.number.isRequired,

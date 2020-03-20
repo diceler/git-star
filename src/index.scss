@@ -1,3 +1,4 @@
+@import "styles/pxToRem";
 @import "styles/repo";
 
 body {
@@ -10,6 +11,6 @@ body {
 }
 
 #root {
-  padding-bottom: 56px;
-  padding-top: 56px;
+  padding-bottom: rem(32);
+  padding-top: rem(56);
 }

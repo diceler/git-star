@@ -29,12 +29,12 @@ function App({actions, initCompleted, repos, starred}) {
         <Container>
           <Row>
             <Col>
-              <div className="text-center mt-3 mb-3 mt-md-5 mb-md-5">
+              <div className="text-center mt-3 mb-3 mt-md-5">
                 <h3>
-                  Find top starred repos of
+                  Top starred repos of
                   <br/>
                   <FontAwesomeIcon icon={faGithub} className="mr-1"/>
-                  GitHub here
+                  GitHub
                 </h3>
               </div>
             </Col>
@@ -51,7 +51,7 @@ function App({actions, initCompleted, repos, starred}) {
         <Container>
           <Row>
             <Col>
-              <div className="text-center mt-3 mb-3 mt-md-5 mb-md-5">
+              <div className="text-center mt-3 mb-3 mt-md-5">
                 <h3>
                   Repos starred by you
                 </h3>
@@ -59,7 +59,10 @@ function App({actions, initCompleted, repos, starred}) {
             </Col>
           </Row>
         </Container>
-        <Starred starred={starred}/>
+        <Starred
+          onUnstar={actions.unstarRepo}
+          starred={starred}
+        />
       </Route>
     </Router>
   );

@@ -19,13 +19,15 @@ export default function Navigation() {
           <Nav.Item>
             <NavLink to="/" className="nav-link" activeClassName="active" exact>
               <FontAwesomeIcon icon={faThList} className="mr-1"/>
-              Repositories
+              <span className="d-none d-sm-inline">Repositories</span>
+              <span className="d-sm-none">Repos</span>
             </NavLink>
           </Nav.Item>
           <Nav.Item>
             <NavLink to="/starred" className="nav-link" activeClassName="active">
               <FontAwesomeIcon icon={faStar} className="mr-1"/>
-              Starred by you
+              <span className="d-none d-sm-inline">Starred by you</span>
+              <span className="d-sm-none">Starred</span>
             </NavLink>
           </Nav.Item>
         </Nav>
