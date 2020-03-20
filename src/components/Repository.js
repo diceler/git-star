@@ -18,7 +18,7 @@ export default function Repository({isStarred, onStar, onUnstar, repo}) {
   return (
     <div key={repo.id} className="repo bg-light">
       <Row noGutters className="align-content-center">
-        <Col>
+        <Col xs={10} md="auto">
           <a className="repo__name" href={repo.html_url} target="_blank" rel="noopener noreferrer">
             {repo.full_name}
           </a>
