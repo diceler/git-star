@@ -4,6 +4,7 @@ export default class RepoCache {
   static cacheKey = 'starredReposLocalCache';
 
   /**
+   * Add starred repo to local cache.
    * Create localStorage if key doesn't exist.
    * @param repo
    */
@@ -20,6 +21,7 @@ export default class RepoCache {
   }
 
   /**
+   * Return locally cached starred repos.
    * If localStorage with key doesn't exist, create it and return empty [].
    * Otherwise, return cached [repos].
    * @returns {*[]|any}
@@ -36,6 +38,7 @@ export default class RepoCache {
   }
 
   /**
+   * Remove starred repo from local cache.
    * Removes repo with supplied 'id' from cache.
    * @param id
    */
