@@ -19,9 +19,9 @@ export default function Repository({isStarred, onStar, onUnstar, repo}) {
     <div key={repo.id} className="repo bg-light">
       <Row noGutters className="align-content-center">
         <Col>
-            <a className="repo__name" href={repo.html_url} target="_blank" rel="noopener noreferrer">
-              {repo.full_name}
-            </a>
+          <a className="repo__name" href={repo.html_url} target="_blank" rel="noopener noreferrer">
+            {repo.full_name}
+          </a>
         </Col>
         <Col bsPrefix="col-auto ml-auto">
           <Button
@@ -31,8 +31,10 @@ export default function Repository({isStarred, onStar, onUnstar, repo}) {
             onClick={isStarred ? onUnstar : onStar}
             value={repo.id}
           >
-            <FontAwesomeIcon icon={isStarred ? fasStar : falStar} className="repo__icon mr-1"/>
-            {isStarred ? 'Starred' : 'Star'}
+            <FontAwesomeIcon icon={isStarred ? fasStar : falStar} className="u-disable-pointer-event"/>
+            <span className="d-none d-sm-inline ml-1 u-disable-pointer-event">
+              {isStarred ? 'Starred' : 'Star'}
+            </span>
           </Button>
         </Col>
       </Row>

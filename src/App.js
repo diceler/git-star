@@ -43,6 +43,16 @@ function App({actions, fetching, initCompleted, repos, page, starred}) {
             </Col>
           </Row>
         </Container>
+        {!initCompleted && (
+          <Container className="mt-3">
+            <Row>
+              <Col className="text-center text-muted font-italic">
+                <FontAwesomeIcon icon={faCircleNotch} spin className="mr-1"/>
+                Loading repositories
+              </Col>
+            </Row>
+          </Container>
+        )}
         <Repositories
           onStar={actions.starRepo}
           onUnstar={actions.unstarRepo}
@@ -53,7 +63,7 @@ function App({actions, fetching, initCompleted, repos, page, starred}) {
           <Container>
             <Row>
               <Col className="mt-3 text-center">
-                <Button variant="outline-info" onClick={nextPage}>
+                <Button variant="outline-info" onClick={nextPage} disabled={fetching}>
                   {fetching && (
                     <FontAwesomeIcon icon={faCircleNotch} spin className="mr-1"/>
                   )}
