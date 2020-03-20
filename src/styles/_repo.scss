@@ -1,6 +1,9 @@
 .repo {
-  margin-bottom: rem(16);
   padding: rem(16);
+
+  & + & {
+    margin-top: rem(8);
+  }
 
   &__name {
     font-size: rem(20);

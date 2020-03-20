@@ -1,9 +1,14 @@
 import types from './githubActionTypes';
 import axios from 'axios';
 
-export function getRepos() {
+export function getRepos(page = 1) {
   return (dispatch) => {
-    axios.get('/search/repositories?q=stars:>1&s=stars&per_page=20')
+    dispatch({
+      type: types.FETCH_STARRED_REPOS_NEXT_PAGE,
+      page,
+    });
+
+    axios.get(`/search/repositories?q=stars:>1&s=stars&per_page=10&page=${page}`)
       .then((response) => {
         dispatch({
           type: types.RECEIVED_STARRED_REPOS,

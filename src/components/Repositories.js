@@ -4,7 +4,6 @@ import {useLocation} from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import Repository from "./Repository";
 
 export default function Repositories({onStar, onUnstar, repos, starred}) {
@@ -32,13 +31,6 @@ export default function Repositories({onStar, onUnstar, repos, starred}) {
               repo={repo}
             />
           ))}
-        </Col>
-      </Row>
-      <Row>
-        <Col className="mt-3 text-center">
-          <Button variant="outline-info">
-            Load more
-          </Button>
         </Col>
       </Row>
     </Container>
